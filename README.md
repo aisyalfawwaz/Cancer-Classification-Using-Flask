@@ -2,7 +2,7 @@
 
 ## Gambaran Umum
 
-Proyek ini adalah aplikasi web yang memungkinkan pengguna untuk mengunggah gambar paru-paru dan melakukan klasifikasi apakah gambar tersebut menunjukkan kanker paru-paru atau tidak. Proyek ini menggunakan model machine learning yang telah di-training sebelumnya untuk melakukan prediksi.
+Proyek ini adalah aplikasi web yang memungkinkan pengguna untuk mengunggah gambar paru-paru dan melakukan klasifikasi apakah gambar tersebut menunjukkan kanker paru-paru atau tidak. Proyek ini menggunakan model deep learning mobilenetv2 yang telah di-training sebelumnya untuk melakukan prediksi.
 
 ## Fitur
 
