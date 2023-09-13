@@ -1,7 +1,5 @@
 # Nama Proyek: Klasifikasi Gambar Kanker Paru-paru
 
-Deskripsi singkat proyek ini di sini.
-
 ## Gambaran Umum
 
 Proyek ini adalah aplikasi web yang memungkinkan pengguna untuk mengunggah gambar paru-paru dan melakukan klasifikasi apakah gambar tersebut menunjukkan kanker paru-paru atau tidak. Proyek ini menggunakan model machine learning yang telah di-training sebelumnya untuk melakukan prediksi.
@@ -34,6 +32,6 @@ Jika Anda ingin berkontribusi pada proyek ini, silakan buat fork dari repositori
 
 ## Kontak
 
-Jika Anda memiliki pertanyaan atau saran, silakan hubungi [Aisy Al Fawwaz] di [aisyalfawwaz111@gmai.com].
+Jika Anda memiliki pertanyaan atau saran, silakan hubungi [Aisy Al Fawwaz] di [aisyalfawwaz111@gmail.com].
 
 Terima kasih telah menggunakan proyek ini!
