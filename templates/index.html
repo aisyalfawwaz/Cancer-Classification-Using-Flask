@@ -4,30 +4,7 @@
     <title>Klasifikasi Gambar Kanker Paru-paru</title>
     <!-- Tambahkan link ke file CSS Tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <!-- Tambahkan skrip JavaScript -->
-    <script>
-        // Fungsi untuk menampilkan pesan "Loading..." saat mengunggah gambar
-        const showLoading = () => {
-            document.getElementById("result").innerHTML = "Loading...";
-        }
-
-        // Fungsi untuk menampilkan gambar yang dipilih oleh pengguna
-        const previewImage = (input) => {
-            const preview = document.getElementById("image-preview");
-            if (input.files && input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    preview.src = e.target.result;
-                    preview.classList.remove("hidden");
-                };
-                reader.readAsDataURL(input.files[0]);
-            } else {
-                preview.src = "";
-                preview.classList.add("hidden");
-            }
-        }
-    </script>
-    <!-- Tambahkan inline CSS untuk font Poppins -->
+    <script src="app.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
