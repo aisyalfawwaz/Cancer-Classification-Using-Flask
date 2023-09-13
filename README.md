@@ -1,4 +1,4 @@
-# Nama Proyek: Klasifikasi Gambar Kanker Paru-paru
+# Klasifikasi Gambar Kanker Paru-paru Menggunakan Flask
 
 ## Gambaran Umum
 
