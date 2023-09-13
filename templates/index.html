@@ -2,70 +2,82 @@
 <html>
 <head>
     <title>Klasifikasi Gambar Kanker Paru-paru</title>
+    <!-- Tambahkan link ke file CSS Tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Tambahkan skrip JavaScript -->
+    <script>
+        // Fungsi untuk menampilkan pesan "Loading..." saat mengunggah gambar
+        const showLoading = () => {
+            document.getElementById("result").innerHTML = "Loading...";
+        }
+
+        // Fungsi untuk menampilkan gambar yang dipilih oleh pengguna
+        const previewImage = (input) => {
+            const preview = document.getElementById("image-preview");
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    preview.src = e.target.result;
+                    preview.classList.remove("hidden");
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = "";
+                preview.classList.add("hidden");
+            }
+        }
+    </script>
+    <!-- Tambahkan inline CSS untuk font Poppins -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
+            font-family: 'Poppins', sans-serif;
         }
 
-        h1 {
-            color: #333;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        input[type="file"] {
-            padding: 10px;
-            border: 2px solid #333;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        input[type="submit"] {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #555;
-        }
-
-        h2 {
-            margin-top: 20px;
-            color: #333;
-        }
-
-        p {
-            font-size: 20px;
+        .font-bold-poppins {
             font-weight: bold;
-            color: #333;
-        }
-
-        .error {
-            color: red;
         }
     </style>
 </head>
-<body>
-    <h1>Klasifikasi Gambar Kanker Paru-paru</h1>
-    <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept=".jpg, .jpeg, .png">
-        <input type="submit" value="Unggah dan Prediksi">
+<body class="bg-gray-100 text-center">
+    <h1 class="text-3xl text-gray-800 py-8">
+        Klasifikasi Gambar Kanker Paru-paru
+    </h1>
+    <form method="POST" enctype="multipart/form-data" class="mb-8" onsubmit="showLoading()">
+        <input type="file" name="file" accept=".jpg, .jpeg, .png" class="py-2 px-4 border rounded-lg text-gray-800 text-lg" onchange="previewImage(this)">
+        <button type="submit" class="bg-gray-800 text-white py-2 px-4 rounded-lg text-lg hover:bg-gray-600 cursor-pointer">
+            Unggah dan Prediksi
+        </button>
     </form>
-    {% if result %}
-    <h2>Hasil Prediksi:</h2>
-    <p>{{ result }}</p>
+    <div id="result">
+        {% if result %}
+        <h2 class="text-2xl text-gray-800">Hasil Prediksi:</h2>
+        <p class="text-2xl font-bold text-gray-800">{{ result }}</p>
+        {% endif %}
+        {% if error %}
+        <p class="text-red-500">{{ error }}</p>
+        {% endif %}
+    </div>
+    <!-- Menampilkan gambar jika 'file' ada di konteks -->
+    {% if file %}
+    <img src="{{ url_for('static', filename='uploads/' + file.filename) }}" alt="Gambar yang diunggah" class="mt-8">
     {% endif %}
-    {% if error %}
-    <p class="error">{{ error }}</p>
-    {% endif %}
+
+    <!-- Tambahkan konten tambahan di bawah ini -->
+    <div class="my-8">
+        <h3 class="text-2xl text-gray-800 font-bold">Tentang Klasifikasi Gambar Kanker Paru-paru</h3>
+        <p class="text-lg text-gray-800">Klasifikasi gambar kanker paru-paru adalah sebuah aplikasi yang menggunakan teknologi deep learning untuk mendeteksi apakah sebuah gambar rentan terhadap kanker paru-paru atau tidak. Aplikasi ini sangat bermanfaat dalam bidang medis untuk mendiagnosis pasien dengan lebih cepat dan akurat.</p>
+    </div>
+
+    <div class="my-8">
+        <h3 class="text-2xl text-gray-800 font-bold">Cara Menggunakan</h3>
+        <ol class="list-decimal text-lg text-gray-800">
+            <li>Pilih gambar yang ingin Anda uji.</li>
+            <li>Klik tombol "Unggah dan Prediksi".</li>
+            <li>Tunggu sejenak untuk melihat hasil prediksi.</li>
+        </ol>
+    </div>
+    
+    <!-- Menampilkan gambar yang dipilih oleh pengguna -->
+    <img id="image-preview" src="" alt="Preview Gambar" class="mt-4 max-w-xs mx-auto hidden">
 </body>
 </html>
