@@ -49,5 +49,9 @@ def index():
 
     return render_template('index.html', result=result)
 
+@app.route('/about')
+def home():
+    return render_template('about.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
