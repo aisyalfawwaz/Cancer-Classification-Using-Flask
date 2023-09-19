@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Klasifikasi Citra Sel Kanker Paru-paru</title>
+    <!-- Tambahkan link ke file CSS Tailwind -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        padding-top: 4rem; /* Adjusted padding for the navbar */
+        padding-bottom: 4rem; /* Adjusted padding for the footer */
+      }
+
+      .font-bold-poppins {
+        font-weight: bold;
+      }
+
+      nav {
+        background-color: rgba(255, 255, 255, 0.7); /* Transparent white */
+        color: black; /* Change text color to black for better visibility */
+        padding: 10px 0;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        backdrop-filter: blur(10px); /* Adds a blur effect for background */
+        z-index: 999; /* Ensure the navbar is on top */
+      }
+
+      /* Style for the navbar links */
+      nav a {
+        color: black; /* Change text color to black */
+        padding: 14px 16px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0 10px; /* Adjusted margin */
+      }
+
+      /* Hover effect with radius */
+      nav a:hover {
+        background-color: black;
+        color: white;
+        border-radius: 10px; /* Adjust the radius as needed */
+      }
+
+      /* Custom styles for card view */
+    </style>
+  </head>
+  <body class="bg-white-100 text-center">
+    <!-- Navbar -->
+    <nav>
+      <a href="/" class="{{ 'active' if request.path == '/' else '' }}"
+        >Beranda</a
+      >
+      <a href="#" class="{{ 'active' if request.path == '/about' else '' }}"
+        >Tahukah Kamu</a
+      >
+      <a
+        href="/about"
+        class="{{ 'active' if request.path == '/about' else '' }}"
+        >Tentang</a
+      >
+    </nav>
+
+    <!-- Container for the single card -->
+    <div class="container mx-auto mt-8">
+      <h1 class="text-3xl text-gray-800 py-8 font-bold">Tahukah Kamu ?</h1>
+
+      <!-- Single card with changing content -->
+      <div id="card" class="card"></div>
+    </div>
+
+    <script>
+        const apiUrl = "https://cinnabar.icaksh.my.id/public/daily/tawiki";
+        const card = document.getElementById("card");
+        let currentInfoIndex = 0;
+        
+        async function changeCardContent() {
+          try {
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+            const info = data.data.info;
+            const currentInfo = info[currentInfoIndex];
+            card.innerHTML = `<p>${currentInfo.tahukah_anda}</p>`;
+            currentInfoIndex = (currentInfoIndex + 1) % info.length;
+        
+            console.log("Konten card diubah:", currentInfo.tahukah_anda);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        }
+        
+        // Initially set the content
+        changeCardContent();
+        
+        // Change content every 5 seconds
+        setInterval(changeCardContent, 3000);
+        
+    </script>
+  </body>
+</html>

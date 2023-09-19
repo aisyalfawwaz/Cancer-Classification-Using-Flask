@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Klasifikasi Gambar Kanker Paru-paru</title>
+    <title>Klasifikasi Citra Sel Kanker Paru-paru</title>
     <!-- Tambahkan link ke file CSS Tailwind -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -42,6 +42,7 @@
         padding-top: 2rem; /* Adjusted padding for the navbar */
       }
 
+    
       .image-preview {
         width: 100%;
         max-height: 300px; /* Adjust the maximum height */
@@ -70,23 +71,27 @@
   <body class="bg-white-100 text-center">
     <!-- Navbar -->
     <nav>
-      <a href="#" class="{{ 'active' if request.path == '/' else '' }}">Home</a>
+      <a href="#" class="{{ 'active' if request.path == '/' else '' }}">Beranda</a>
+      <a
+        href="/features"
+        class="{{ 'active' if request.path == '/about' else '' }}"
+        >Tahukah Kamu</a
+      >
       <a
         href="/about"
         class="{{ 'active' if request.path == '/about' else '' }}"
         >About</a
       >
-
     </nav>
     <img
       src="https://img.freepik.com/premium-photo/fun-cartoon-kid-with-rain-gear_183364-63945.jpg"
       alt="Image Description"
       class="mt-4 max-w-xs mx-auto"
     />
-    <h1 class="text-3xl text-gray-800 py-8 font-bold">
+    <h1 class="text-3xl text-gray-800 py-4 font-bold">
       Klasifikasi Citra Kanker Sel
     </h1>
-    <form method="POST" action="/" enctype="multipart/form-data" class="mb-8">
+    <form method="POST" action="/" enctype="multipart/form-data" class="mb-2">
       <input
         type="file"
         name="file"
@@ -94,12 +99,14 @@
         class="py-2 px-4 border rounded-lg text-gray-800 text-lg"
         onchange="previewImage(this)"
       />
-      <button
-        type="submit"
-        class="bg-gray-800 text-white py-2 px-4 rounded-lg text-lg hover:bg-gray-600 cursor-pointer"
-      >
-        Unggah dan Prediksi
-      </button>
+      <div class="button-container">
+        <button
+          type="submit"
+          class="bg-gray-800 mt-2 text-white py-2 px-4 rounded-lg text-lg hover:bg-gray-600 cursor-pointer"
+        >
+          Unggah dan Prediksi
+        </button>
+      </div>      
       <!-- Hidden input to store the image URL for preview -->
       <input
         type="hidden"
@@ -131,9 +138,7 @@
     <div class="image-preview-container">
       <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
         <h3 class="text-2xl text-gray-800 font-bold mb-4">Preview Citra</h3>
-        <img
-          id="image-preview"
-        />
+        <img id="image-preview" />
       </div>
     </div>
   </body>

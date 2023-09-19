@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Klasifikasi Gambar Kanker Paru-paru</title>
+    <title>Klasifikasi Citra Sel Kanker Paru-paru</title>
     <!-- Tambahkan link ke file CSS Tailwind -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
@@ -80,27 +80,30 @@
   <body class="bg-white-100 text-center">
     <!-- Navbar -->
     <nav>
-      <a href="/" class="{{ 'active' if request.path == '/' else '' }}">Home</a>
+      <a href="/" class="{{ 'active' if request.path == '/' else '' }}">Beranda</a>
+      <a href="/features" class="{{ 'active' if request.path == '/about' else '' }}"
+        >Tahukah Kamu</a
+      >
       <a
         href="/about"
         class="{{ 'active' if request.path == '/about' else '' }}"
-        >About</a
+        >Tentang</a
       >
-
     </nav>
     <img
       src="https://img.freepik.com/premium-photo/fun-cartoon-kid-with-rain-gear_183364-63948.jpg"
       alt="Image Description"
       class="mt-4 max-w-xs mx-auto"
     />
-    <h1 class="text-3xl text-gray-800 py-8 font-bold">
-      Tentang Project
-    </h1>
+    <h1 class="text-3xl text-gray-800 py-8 font-bold">Tentang Project</h1>
 
     <!-- Description of the project with fade-in animation -->
     <div class="mx-auto mt-3 max-w-2xl animate__animated animate__fadeIn">
       <p>
-        Project ini adalah web untuk mendeteksi kanker sel dari citra menggunakan teknologi deep learning. Kami menggunakan model klasifikasi yang telah di-train sebelumnya untuk melakukan prediksi apakah citra tersebut mengandung kanker paru-paru atau tidak.
+        Project ini adalah web untuk mendeteksi kanker sel dari citra
+        menggunakan teknologi deep learning. Kami menggunakan model klasifikasi
+        yang telah di-train sebelumnya untuk melakukan prediksi apakah citra
+        tersebut mengandung kanker paru-paru atau tidak.
       </p>
     </div>
 
