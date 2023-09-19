@@ -1,112 +1,133 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>About | Klasifikasi Gambar Kanker Paru-paru</title>
-    <!-- Tambahkan link ke file CSS Tailwind dan Animate.css -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.2/animate.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+  <head>
+    <title>Klasifikasi Gambar Kanker Paru-paru</title>
+    <!-- Tambahkan link ke file CSS Tailwind -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
+      body {
+        font-family: "Poppins", sans-serif;
+        padding-top: 4rem; /* Adjusted padding for the navbar */
+        padding-bottom: 4rem; /* Adjusted padding for the footer */
+        position: relative; /* Set body position to relative */
+      }
 
-        .font-bold-poppins {
-            font-weight: bold;
-        }   
+      .font-bold-poppins {
+        font-weight: bold;
+      }
 
-        /* Style for the navbar */
-        nav {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
+      nav {
+        background-color: rgba(255, 255, 255, 0.7); /* Transparent white */
+        color: black; /* Change text color to black for better visibility */
+        padding: 10px 0;
+        text-align: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        backdrop-filter: blur(10px); /* Adds a blur effect for background */
+        z-index: 999; /* Ensure the navbar is on top */
+      }
 
-        nav a {
-            color: white;
-            padding: 14px 16px;
-            text-decoration: none;
-            display: inline-block;
-        }
+      /* Adjusted styling for the image preview */
+      .image-preview-container {
+        max-width: 30%; /* Adjust the maximum width */
+        margin: 0 auto;
+        padding-top: 2rem; /* Adjusted padding for the navbar */
+      }
 
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
+      .image-preview {
+        width: 100%;
+        max-height: 300px; /* Adjust the maximum height */
+        object-fit: contain; /* Adjusted object-fit to contain the image */
+        border: 0px solid #ccc;
+        border-radius: 20px;
+      }
 
-        /* Style for the active navbar item */
-        nav a.active {
-            background-color: #ddd;
-            color: black;
-        }
+      /* Style for the navbar links */
+      nav a {
+        color: black; /* Change text color to black */
+        padding: 14px 16px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 0 10px; /* Adjusted margin */
+      }
 
-        .card-container {
-            position: relative;
-        }
+      /* Hover effect with radius */
+      nav a:hover {
+        background-color: black;
+        color: white;
+        border-radius: 10px; /* Adjust the radius as needed */
+      }
 
-        .card-indicator {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            width: 20px;
-            height: 20px;
-            background-color: red; /* Adjust color as needed */
-            border-radius: 50%;
-            display: none;
-        }
-
-        .card-container:hover .card-indicator {
-            display: block;
-        }
+      /* Style for GitHub icon */
+      .github-icon {
+        position: absolute;
+        bottom: 20px; /* Adjust the distance from the bottom */
+        left: 50%; /* Position at the horizontal center */
+        transform: translateX(-50%);
+        z-index: 1000; /* Ensure the icon is on top */
+      }
     </style>
-</head>
-<body class="bg-gray-100 text-center">
+  </head>
+  <body class="bg-white-100 text-center">
     <!-- Navbar -->
     <nav>
-        <a href="/">Home</a>
-        <a href="/about" class="active">About</a>
-        <a href="#">Features</a>
-    </nav>
+      <a href="/" class="{{ 'active' if request.path == '/' else '' }}">Home</a>
+      <a
+        href="/about"
+        class="{{ 'active' if request.path == '/about' else '' }}"
+        >About</a
+      >
 
-    <h1 class="text-3xl text-gray-800 py-8">
-        Tentang Aplikasi Klasifikasi Gambar Kanker Paru-paru
+    </nav>
+    <img
+      src="https://img.freepik.com/premium-photo/fun-cartoon-kid-with-rain-gear_183364-63948.jpg"
+      alt="Image Description"
+      class="mt-4 max-w-xs mx-auto"
+    />
+    <h1 class="text-3xl text-gray-800 py-8 font-bold">
+      Tentang Project
     </h1>
 
-    <div class="container mx-auto">
-        <div class="flex flex-col md:flex-row justify-between mx-4">
-            <div class="bg-white p-6 rounded-lg shadow-lg mb-8 md:mr-4 md:w-1/2 animate__animated animate__fadeInLeft card-container">
-                <div class="card-indicator"></div>
-                <h3 class="text-2xl text-gray-800 font-bold mb-4">Pengembang</h3>
-                <p class="text-lg text-gray-800">
-                    Aplikasi ini dikembangkan oleh Aisy Al Fawwaz sebagai bagian dari proyek tesis. 
-                </p>
-            </div>
-
-            <div class="bg-white p-6 rounded-lg shadow-lg md:ml-4 md:w-1/2 animate__animated animate__fadeInRight card-container">
-                <div class="card-indicator"></div>
-                <h3 class="text-2xl text-gray-800 font-bold mb-4">Tujuan Proyek</h3>
-                <p class="text-lg text-gray-800">
-                    Tujuan dari proyek ini adalah memanfaatkan teknologi deep learning untuk mendeteksi apakah sebuah gambar rentan terhadap kanker paru-paru atau tidak. Aplikasi ini diharapkan dapat membantu dalam mendiagnosis pasien dengan lebih cepat dan akurat di bidang medis.
-                </p>
-            </div>
-        </div>
+    <!-- Description of the project with fade-in animation -->
+    <div class="mx-auto mt-3 max-w-2xl animate__animated animate__fadeIn">
+      <p>
+        Project ini adalah web untuk mendeteksi kanker sel dari citra menggunakan teknologi deep learning. Kami menggunakan model klasifikasi yang telah di-train sebelumnya untuk melakukan prediksi apakah citra tersebut mengandung kanker paru-paru atau tidak.
+      </p>
     </div>
 
-    <script>
-        const cards = document.querySelectorAll('.card-container');
+    <!-- GitHub icon -->
+    <a
+      href="https://github.com/aisyalfawwaz"
+      target="_blank"
+      class="github-icon"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        fill="currentColor"
+        class="bi bi-github"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.2 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.82-2.14-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.14 0 3.07-1.87 3.65-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+        />
+      </svg>
+    </a>
 
-        cards.forEach((card, index) => {
-            card.addEventListener('mouseenter', () => {
-                const indicator = card.querySelector('.card-indicator');
-                indicator.style.animation = 'pulse 0.5s infinite';
-            });
-
-            card.addEventListener('mouseleave', () => {
-                const indicator = card.querySelector('.card-indicator');
-                indicator.style.animation = '';
-            });
-        });
-    </script>
-</body>
+    <!-- Include animate.css for animations -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </body>
 </html>

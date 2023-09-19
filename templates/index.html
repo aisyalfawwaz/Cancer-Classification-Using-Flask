@@ -15,40 +15,59 @@
     <style>
       body {
         font-family: "Poppins", sans-serif;
+        padding-top: 4rem; /* Adjusted padding for the navbar */
+        padding-bottom: 4rem; /* Adjusted padding for the footer */
       }
 
       .font-bold-poppins {
         font-weight: bold;
       }
 
-      /* Style for the navbar */
       nav {
-        background-color: #333;
-        color: white;
+        background-color: rgba(255, 255, 255, 0.7); /* Transparent white */
+        color: black; /* Change text color to black for better visibility */
         padding: 10px 0;
         text-align: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        backdrop-filter: blur(10px); /* Adds a blur effect for background */
+        z-index: 999; /* Ensure the navbar is on top */
       }
 
+      /* Adjusted styling for the image preview */
+      .image-preview-container {
+        max-width: 30%; /* Adjust the maximum width */
+        margin: 0 auto;
+        padding-top: 2rem; /* Adjusted padding for the navbar */
+      }
+
+      .image-preview {
+        width: 100%;
+        max-height: 300px; /* Adjust the maximum height */
+        object-fit: contain; /* Adjusted object-fit to contain the image */
+        border: 0px solid #ccc;
+        border-radius: 20px;
+      }
+
+      /* Style for the navbar links */
       nav a {
-        color: white;
+        color: black; /* Change text color to black */
         padding: 14px 16px;
         text-decoration: none;
         display: inline-block;
+        margin: 0 10px; /* Adjusted margin */
       }
 
+      /* Hover effect with radius */
       nav a:hover {
-        background-color: #ddd;
-        color: black;
-      }
-
-      /* Style for the active navbar item */
-      nav a.active {
-        background-color: #ddd;
-        color: black;
+        background-color: black;
+        color: white;
+        border-radius: 10px; /* Adjust the radius as needed */
       }
     </style>
   </head>
-  <body class="bg-gray-100 text-center">
+  <body class="bg-white-100 text-center">
     <!-- Navbar -->
     <nav>
       <a href="#" class="{{ 'active' if request.path == '/' else '' }}">Home</a>
@@ -57,27 +76,17 @@
         class="{{ 'active' if request.path == '/about' else '' }}"
         >About</a
       >
-      <a href="#" class="{{ 'active' if request.path == '/features' else '' }}"
-        >Features</a
-      >
-    </nav>
 
+    </nav>
     <img
-      src="https://inaban.org/wp-content/uploads/2021/06/Gambar-2-CT-Scan.jpg"
+      src="https://img.freepik.com/premium-photo/fun-cartoon-kid-with-rain-gear_183364-63945.jpg"
       alt="Image Description"
       class="mt-4 max-w-xs mx-auto"
     />
-
-    <h1 class="text-3xl text-gray-800 py-8">
-      Klasifikasi Gambar Kanker Paru-paru
+    <h1 class="text-3xl text-gray-800 py-8 font-bold">
+      Klasifikasi Citra Kanker Sel
     </h1>
-
-    <form
-      method="POST"
-      enctype="multipart/form-data"
-      class="mb-8"
-      onsubmit="showLoading()"
-    >
+    <form method="POST" action="/" enctype="multipart/form-data" class="mb-8">
       <input
         type="file"
         name="file"
@@ -91,6 +100,13 @@
       >
         Unggah dan Prediksi
       </button>
+      <!-- Hidden input to store the image URL for preview -->
+      <input
+        type="hidden"
+        name="image_preview_url"
+        id="image-preview-url"
+        value=""
+      />
     </form>
 
     <div id="result">
@@ -112,11 +128,13 @@
     {% endif %}
 
     <!-- Menampilkan gambar yang dipilih oleh pengguna -->
-    <img
-      id="image-preview"
-      src=""
-      alt="Preview Gambar"
-      class="mt-4 max-w-xs mx-auto hidden"
-    />
+    <div class="image-preview-container">
+      <div class="bg-white p-6 rounded-lg shadow-lg mt-8">
+        <h3 class="text-2xl text-gray-800 font-bold mb-4">Preview Citra</h3>
+        <img
+          id="image-preview"
+        />
+      </div>
+    </div>
   </body>
 </html>
